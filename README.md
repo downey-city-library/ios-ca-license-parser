@@ -1,2 +1,2 @@
-# ios-ca-license-parser
-CA License Parser
+# License Parser Framework 
+Framework for parsing a CA Driver License or Identification Card. 
