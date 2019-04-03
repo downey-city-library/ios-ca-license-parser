@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		AA8E626B2253FE4B00C61D4E /* CALicense.h in Headers */ = {isa = PBXBuildFile; fileRef = AA8E62692253FE4B00C61D4E /* CALicense.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA8E62722254003100C61D4E /* LicenseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8E62712254003100C61D4E /* LicenseParser.swift */; };
+		AADFE1982254384600E3B9D7 /* License.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADFE1972254384600E3B9D7 /* License.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AA8E62662253FE4B00C61D4E /* CALicense.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CALicense.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA8E62692253FE4B00C61D4E /* CALicense.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CALicense.h; sourceTree = "<group>"; };
 		AA8E626A2253FE4B00C61D4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA8E62712254003100C61D4E /* LicenseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseParser.swift; sourceTree = "<group>"; };
+		AADFE1972254384600E3B9D7 /* License.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = License.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +52,8 @@
 			children = (
 				AA8E62692253FE4B00C61D4E /* CALicense.h */,
 				AA8E626A2253FE4B00C61D4E /* Info.plist */,
+				AA8E62712254003100C61D4E /* LicenseParser.swift */,
+				AADFE1972254384600E3B9D7 /* License.swift */,
 			);
 			path = CALicense;
 			sourceTree = "<group>";
@@ -95,6 +101,7 @@
 				TargetAttributes = {
 					AA8E62652253FE4B00C61D4E = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -130,6 +137,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA8E62722254003100C61D4E /* LicenseParser.swift in Sources */,
+				AADFE1982254384600E3B9D7 /* License.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +270,7 @@
 		AA8E626F2253FE4B00C61D4E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -277,6 +287,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.downeycitylibrary.CALicense;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -285,6 +296,7 @@
 		AA8E62702253FE4B00C61D4E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
