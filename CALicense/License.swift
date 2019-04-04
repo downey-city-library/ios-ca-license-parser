@@ -9,16 +9,16 @@
 import Foundation
 
 public struct License {
-    var firstname = ""
-    var lastname = ""
-    var middlename = ""
-    var birthdate = ""
-    var sex = ""
-    var address = ""
-    var city = ""
-    var state = ""
-    var zip = ""
-    var number = ""
+    public var firstname = ""
+    public var lastname = ""
+    public var middlename = ""
+    public var birthdate = ""
+    public var sex = ""
+    public var address = ""
+    public var city = ""
+    public var state = ""
+    public var zip = ""
+    public var number = ""
     
     public func debugDescription() {
         print("\nFirst Name:", self.firstname)
