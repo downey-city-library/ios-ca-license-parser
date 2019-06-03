@@ -9,9 +9,23 @@
 import Foundation
 
 public class LicenseParser {
+    public static let shared = LicenseParser()
+    
+    public enum ScannerType: Int {
+        case ds457, kdc300i
+    }
+    
+    public var scannerType: ScannerType = .ds457
+    
     public class func parse(_ data: String) -> License {
         
-        let fields = data.components(separatedBy: "0010")
+        var delimiter = ""
+        switch shared.scannerType {
+        case .ds457: delimiter = "0010"
+        case .kdc300i: delimiter = "010"
+        }
+        
+        let fields = data.components(separatedBy: delimiter)
         var license = License()
         
         for field in fields {
