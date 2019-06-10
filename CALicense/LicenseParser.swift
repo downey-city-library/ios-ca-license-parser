@@ -12,7 +12,7 @@ public class LicenseParser {
     public static let shared = LicenseParser()
     
     public enum ScannerType: Int {
-        case ds457, kdc300i
+        case as0240d, ds457, kdc300i
     }
     
     public var scannerType: ScannerType = .ds457
@@ -21,6 +21,7 @@ public class LicenseParser {
         
         var delimiter = ""
         switch shared.scannerType {
+        case .as0240d: delimiter = "\n"
         case .ds457: delimiter = "0010"
         case .kdc300i: delimiter = "010"
         }
