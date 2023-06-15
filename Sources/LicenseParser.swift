@@ -18,6 +18,7 @@ public class LicenseParser {
     public var scannerType: ScannerType = .ds457
     
     public class func parse(_ data: String) -> License {
+        let data = data.replacingOccurrences(of: "\u{03}", with: "")
         
         var delimiter = ""
         switch shared.scannerType {
