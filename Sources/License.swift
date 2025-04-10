@@ -260,7 +260,7 @@ extension String {
 internal struct Subfile {
     
     init(_ data: String, offset: Int? = nil) {
-        var offset = offset ?? 0
+        let offset = offset ?? 0
         
         self.type = data.at(offset, length: 2)
         self.offset = Int(data.at(offset + 2, length: 4)) ?? offset
@@ -358,34 +358,34 @@ extension License {
         
         OPTIONAL DATA ELEMENTS ----------------------------------
         
-        DAH | \(address.streetTwo) | Address - Street 2
-        DAZ | \(hair) | Hair Color
-        DCI | \(placeOfBirth) | Place of Birth
-        DCJ | \(auditInformation) | Audit Information
-        DCK | \(inventoryControlNumber) | Inventory Control Number
-        DBN | \(aliasFamilyName) | Alias / AKA Family Name
-        DBG | \(aliasGivenName) | Alias / AKA Given Name
-        DBS | \(aliasSuffix) | Alias / AKA Suffix Name
-        DCU | \(nameSuffix) | Name Suffix
-        DCE | \(weightRange) | Physical Description - Weight Range
-        DCL | \(race) | Race / Ethnicity
-        DCM | \(standardVehicleClassification) | Standard Vehicle Classification
-        DCN | \(standardEndorsementCode) | Standard Endorsement Code
-        DCO | \(standardRestrictionCode) | Standard Restriction Code
-        DCP | \(jurisdictionVehicleClassification) | Jurisdiction-Specific Vehicle Classification Description
-        DCQ | \(jurisdictionEndorsementCode) | Jurisdiction-Specific Endorsement Code Description
-        DCR | \(jurisdictionRestrictionCode) | Jurisdiction-Specific Restriction Code Description
-        DDA | \(complianceType) | Compliance Type
-        DDB | \(cardRevisionDate) | Card Revision Date
-        DDC | \(hazmatExpiration) | HAZMAT Endorssement Expiration Date
-        DDD | \(limitedDurationDocumentIndicator) | Limited Duration Document Indicator
-        DAW | \(weightLB) | Weight (pounds)
-        DAX | \(weightKG) | Weight (kilograms)
-        DDH | \(under18Until) | Under 18 Until
-        DDI | \(under19Until) | Under 19 Until
-        DDJ | \(under21Until) | Under 21 Until
-        DDK | \(organDonor) | Organ Donor Indicator
-        DDL | \(veteran) | Veteran Indicator
+        DAH | \(address.streetTwo as Any) | Address - Street 2
+        DAZ | \(hair as Any) | Hair Color
+        DCI | \(placeOfBirth as Any) | Place of Birth
+        DCJ | \(auditInformation as Any) | Audit Information
+        DCK | \(inventoryControlNumber as Any) | Inventory Control Number
+        DBN | \(aliasFamilyName as Any) | Alias / AKA Family Name
+        DBG | \(aliasGivenName as Any) | Alias / AKA Given Name
+        DBS | \(aliasSuffix as Any) | Alias / AKA Suffix Name
+        DCU | \(nameSuffix as Any) | Name Suffix
+        DCE | \(weightRange as Any) | Physical Description - Weight Range
+        DCL | \(race as Any) | Race / Ethnicity
+        DCM | \(standardVehicleClassification as Any) | Standard Vehicle Classification
+        DCN | \(standardEndorsementCode as Any) | Standard Endorsement Code
+        DCO | \(standardRestrictionCode as Any) | Standard Restriction Code
+        DCP | \(jurisdictionVehicleClassification as Any) | Jurisdiction-Specific Vehicle Classification Description
+        DCQ | \(jurisdictionEndorsementCode as Any) | Jurisdiction-Specific Endorsement Code Description
+        DCR | \(jurisdictionRestrictionCode as Any) | Jurisdiction-Specific Restriction Code Description
+        DDA | \(complianceType as Any) | Compliance Type
+        DDB | \(cardRevisionDate as Any) | Card Revision Date
+        DDC | \(hazmatExpiration as Any) | HAZMAT Endorssement Expiration Date
+        DDD | \(limitedDurationDocumentIndicator as Any) | Limited Duration Document Indicator
+        DAW | \(weightLB as Any) | Weight (pounds)
+        DAX | \(weightKG as Any) | Weight (kilograms)
+        DDH | \(under18Until as Any) | Under 18 Until
+        DDI | \(under19Until as Any) | Under 19 Until
+        DDJ | \(under21Until as Any) | Under 21 Until
+        DDK | \(organDonor as Any) | Organ Donor Indicator
+        DDL | \(veteran as Any) | Veteran Indicator
         """
     }
 }
