@@ -1,4 +1,4 @@
-internal enum LicenseField: String {
+internal enum LicenseFieldCode: String {
     
     // Mandatory Data Elements
     

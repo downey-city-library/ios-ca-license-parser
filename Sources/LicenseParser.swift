@@ -18,16 +18,11 @@ public struct LicenseParser {
             print("subfiles.lastIndex", subfiles.isEmpty ? header.length : subfiles.lastIndex, "out of", data.count, "\n")
         }
         
-        let fields = subfiles.first?.value.components(separatedBy: header.dataElementSeparator).map { Field(code: LicenseField(rawValue: String($0.prefix(3))) ?? .unk, value: trimField($0)) } ?? []
+        let fields = subfiles.first?.value.components(separatedBy: header.dataElementSeparator).map { LicenseField(code: LicenseFieldCode(rawValue: String($0.prefix(3))) ?? .unk, value: trimField($0)) } ?? []
         return License(fields, header: header)
     }
     
     internal static func trimField(_ field: String) -> String {
-        String(field.dropFirst(3))
+        String(field.dropFirst(3)).trimmingCharacters(in: .whitespacesAndNewlines)
     }
-}
-
-struct Field {
-    let code: LicenseField
-    let value: String
 }

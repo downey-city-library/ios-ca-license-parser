@@ -2,7 +2,7 @@ import Foundation
 
 public struct License {
     
-    init(_ fields: [Field], header: Header) {
+    init(_ fields: [LicenseField], header: Header) {
         self.header = header
         
         for field in fields {
