@@ -74,6 +74,10 @@ extension License {
         DDJ | \(raw.ddj as Any) | Under 21 Until
         DDK | \(raw.ddk as Any) | Organ Donor Indicator
         DDL | \(raw.ddl as Any) | Veteran Indicator
+        
+        JURISDICTION-SPECIFIC SUBFILES (\(raw.subfiles.count)) -----------------------
+        \(raw.subfiles.debugDescription)
+        
         """
     }
 }

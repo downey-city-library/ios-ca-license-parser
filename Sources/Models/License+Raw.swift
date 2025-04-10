@@ -223,5 +223,10 @@ public extension License {
         
         /// Veteran Indicator
         public var ddl: String?
+        
+        // MARK: - ADDITIONAL SUBFILES
+        
+        /// Jurisdiction-Specific Subfiles
+        public var subfiles: [Subfile] = []
     }
 }

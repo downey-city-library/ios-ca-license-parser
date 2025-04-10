@@ -1,6 +1,6 @@
 import Foundation
 
-internal struct Subfile {
+public struct Subfile {
     
     init(_ data: String, offset: Int? = nil) {
         let offset = offset ?? 0
@@ -8,12 +8,12 @@ internal struct Subfile {
         self.type = data.at(offset, length: 2)
         self.offset = Int(data.at(offset + 2, length: 4)) ?? offset
         self.length = Int(data.at(offset + 6, length: 4)) ?? data.count - self.offset
-        self.value = String(data.at(self.offset, length: self.length).dropFirst(2))
+        self.value = String(data.at(self.offset, length: self.length).dropFirst(2)).trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
-    var offset: Int
-    var length: Int
+    internal var offset: Int
+    internal var length: Int
     
-    var type: String
-    var value: String
+    public var type: String
+    public var value: String
 }
