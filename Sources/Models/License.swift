@@ -2,70 +2,11 @@ import Foundation
 
 public struct License {
     
-    init(_ fields: [LicenseField], header: Header) {
-        self.header = header
-        
-        for field in fields {
-            switch field.code {
-            case .dca: `class` = field.value
-            case .dcb: restrictions = field.value
-            case .dcd: endorsements = field.value
-            case .dba: expiration = field.value
-            case .dcs: name.last.value = field.value
-            case .dac: name.first.value = field.value
-            case .dad: name.middle.value = field.value
-            case .dbd: issued = field.value
-            case .dbb: birthdate = field.value
-            case .dbc: sex = field.value
-            case .day: eyeColor = field.value
-            case .dau:
-                height.measurement = Int(field.value.components(separatedBy: " ")[0]) ?? 0
-                height.unit = field.value.components(separatedBy: " ")[1]
-            case .dag: address.street = field.value
-            case .dai: address.city = field.value
-            case .daj: address.state = field.value
-            case .dak: address.zip = String(field.value.dropLast(6))
-            case .daq: number = field.value
-            case .dcf: id = field.value
-            case .dcg: address.country = field.value
-            case .dde: name.last.truncation = TruncationCode(from: field.value)
-            case .ddf: name.first.truncation = TruncationCode(from: field.value)
-            case .ddg: name.middle.truncation = TruncationCode(from: field.value)
-            case .dah: address.streetTwo = field.value
-            case .daz: hair = field.value
-            case .dci: placeOfBirth = field.value
-            case .dcj: auditInformation = field.value
-            case .dck: inventoryControlNumber = field.value
-            case .dbn: aliasFamilyName = field.value
-            case .dbg: aliasGivenName = field.value
-            case .dbs: aliasSuffix = field.value
-            case .dcu: nameSuffix = field.value
-            case .dce: weightRange = field.value
-            case .dcl: race = field.value
-            case .dcm: standardVehicleClassification = field.value
-            case .dcn: standardEndorsementCode = field.value
-            case .dco: standardRestrictionCode = field.value
-            case .dcp: jurisdictionVehicleClassification = field.value
-            case .dcq: jurisdictionEndorsementCode = field.value
-            case .dcr: jurisdictionRestrictionCode = field.value
-            case .dda: complianceType = field.value
-            case .ddb: cardRevisionDate = field.value
-            case .ddc: hazmatExpiration = field.value
-            case .ddd: limitedDurationDocumentIndicator = field.value
-            case .daw: weightLB = field.value
-            case .dax: weightKG = field.value
-            case .ddh: under18Until = field.value
-            case .ddi: under19Until = field.value
-            case .ddj: under21Until = field.value
-            case .ddk: organDonor = field.value
-            case .ddl: veteran = field.value
-            case .unk: break
-            }
-        }
-    }
+    // MARK: - INITIALIZATION
     
-    // MARK: - HEADER
-    internal var header: Header
+    init(header: Header, data: [LicenseField]) {
+        self.raw = Raw(header: header, data: data)
+    }
     
     // MARK: - MANDATORY DATA ELEMENTS
     
@@ -225,82 +166,8 @@ public struct License {
     public var under21Until: String?
     public var organDonor: String?
     public var veteran: String?
-}
-
-extension License {
     
-    public var debugDescription: String {
-        """
-        
-        HEADER ---------------------------------------------------
-        
-        \(header.complianceIndicator) | Compliance Indicator
-        
-        \(header.dataElementSeparator.debugDescription) | Line Feed Character
-        \(header.recordSeparator.debugDescription) | Record Separator Character
-        \(header.segmentTerminator.debugDescription) | Carriage Return Character
-        
-        \(header.fileType) | File Type
-        \(header.iin) | Issuer Identification Number
-        \(header.aamvaVersionNumber) | AAMVA Version Number
-        \(header.jurisdictionVersionNumber) | Jurisdication Version Number
-        \(header.numberOfEntries) | Number of Entries
-        
-        MANDATORY DATA ELEMENTS ----------------------------------
-        
-        DCA | \(`class`) | Jurisdiction-Specific Vehicle Class
-        DCB | \(restrictions) | Jurisdiction-Specific Restriction Codes
-        DCD | \(endorsements) | Jurisdiction-Specific Endorsement Codes
-        DBA | \(expiration) | Document Expiration Date
-        DCS | \(name.last.value) | Customer Family Name
-        DAC | \(name.first.value) | Customer First Name
-        DAD | \(name.middle.value) | Customer Middle Name(s)
-        DBD | \(issued) | Document Issue Date
-        DBB | \(birthdate) | Date of Birth
-        DBC | \(sex) | Physical Description - Sex
-        DAY | \(eyeColor) | Physical Description - Eye Color
-        DAU | \(height.measurement) \(height.unit) | Physical Description - Height
-        DAG | \(address.street) | Address - Street 1
-        DAI | \(address.city) | Address - City
-        DAJ | \(address.state) | Address _ Jurisdiction Code
-        DAK | \(address.zip) | Address - Postal Code
-        DAQ | \(number) | Customer ID Number
-        DCF | \(id) | Document Discriminator
-        DCG | \(address.country) | County Identification
-        DDE | \(name.last.truncation.code) | Family Name Truncation
-        DDF | \(name.first.truncation.code) | First Name Truncation
-        DDG | \(name.middle.truncation.code) | Middle Name Truncation
-        
-        OPTIONAL DATA ELEMENTS ----------------------------------
-        
-        DAH | \(address.streetTwo as Any) | Address - Street 2
-        DAZ | \(hair as Any) | Hair Color
-        DCI | \(placeOfBirth as Any) | Place of Birth
-        DCJ | \(auditInformation as Any) | Audit Information
-        DCK | \(inventoryControlNumber as Any) | Inventory Control Number
-        DBN | \(aliasFamilyName as Any) | Alias / AKA Family Name
-        DBG | \(aliasGivenName as Any) | Alias / AKA Given Name
-        DBS | \(aliasSuffix as Any) | Alias / AKA Suffix Name
-        DCU | \(nameSuffix as Any) | Name Suffix
-        DCE | \(weightRange as Any) | Physical Description - Weight Range
-        DCL | \(race as Any) | Race / Ethnicity
-        DCM | \(standardVehicleClassification as Any) | Standard Vehicle Classification
-        DCN | \(standardEndorsementCode as Any) | Standard Endorsement Code
-        DCO | \(standardRestrictionCode as Any) | Standard Restriction Code
-        DCP | \(jurisdictionVehicleClassification as Any) | Jurisdiction-Specific Vehicle Classification Description
-        DCQ | \(jurisdictionEndorsementCode as Any) | Jurisdiction-Specific Endorsement Code Description
-        DCR | \(jurisdictionRestrictionCode as Any) | Jurisdiction-Specific Restriction Code Description
-        DDA | \(complianceType as Any) | Compliance Type
-        DDB | \(cardRevisionDate as Any) | Card Revision Date
-        DDC | \(hazmatExpiration as Any) | HAZMAT Endorssement Expiration Date
-        DDD | \(limitedDurationDocumentIndicator as Any) | Limited Duration Document Indicator
-        DAW | \(weightLB as Any) | Weight (pounds)
-        DAX | \(weightKG as Any) | Weight (kilograms)
-        DDH | \(under18Until as Any) | Under 18 Until
-        DDI | \(under19Until as Any) | Under 19 Until
-        DDJ | \(under21Until as Any) | Under 21 Until
-        DDK | \(organDonor as Any) | Organ Donor Indicator
-        DDL | \(veteran as Any) | Veteran Indicator
-        """
-    }
+    // MARK: - RAW VALUES
+    
+    public var raw: Raw
 }
