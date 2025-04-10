@@ -155,5 +155,5 @@ internal enum LicenseFieldCode: String {
     case ddl = "DDL"
     
     /// Unknown Field
-    case unk = "UNK"
+    case unknown = "UNK"
 }

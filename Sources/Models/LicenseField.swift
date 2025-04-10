@@ -2,7 +2,7 @@ import Foundation
 
 struct LicenseField {
     init(data: String) {
-        code = LicenseFieldCode(rawValue: String(data.prefix(3))) ?? .unk
+        code = LicenseFieldCode(rawValue: String(data.prefix(3))) ?? .unknown
         value = String(data.dropFirst(3))
     }
     

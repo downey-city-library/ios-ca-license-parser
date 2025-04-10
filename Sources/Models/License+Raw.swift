@@ -61,7 +61,7 @@ public extension License {
                 case .ddj: ddj = field.value
                 case .ddk: ddk = field.value
                 case .ddl: ddl = field.value
-                case .unk: break
+                case .unknown: break
                 }
             }
         }
