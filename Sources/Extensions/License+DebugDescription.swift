@@ -33,6 +33,7 @@ extension License {
         
         DBA | \(raw.dba) | Document Expiration Date
         .expiration = \(expiration)
+        .isExpired = \(isExpired)
         
         DCS | \(raw.dcs) | Customer Family Name
         .name.last.value = \(name.last.value)

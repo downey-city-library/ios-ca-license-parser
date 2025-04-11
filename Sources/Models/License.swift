@@ -57,6 +57,7 @@ public struct License {
      - Character Type: Numeric
      */
     public var expiration: Date { raw.dba.asDate ?? Date.today }
+    public var isExpired: Bool { expiration < Date.today }
     
     public var name: Name {
         Name(
