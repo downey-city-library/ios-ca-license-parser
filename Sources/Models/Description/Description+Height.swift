@@ -1,12 +1,12 @@
 import Foundation
 
-extension License {
+extension License.Description {
     
     public struct Height {
         
-        public init(measurement: Int = 0, unit: String = "in") {
-            self.measurement = measurement
-            self.unit = unit
+        public init(_ height: String) {
+            self.measurement = Int(height.at(0, length: 3)) ?? 0
+            self.unit = height.at(4, length: 2).lowercased()
         }
         
         /**

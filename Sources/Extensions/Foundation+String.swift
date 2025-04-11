@@ -28,4 +28,17 @@ extension String {
     func at(_ index: Int, length: Int) -> String {
         self[index...index+(length - 1)]
     }
+    
+    var asDate: Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMddyyyy"
+        return dateFormatter.date(from: self)
+    }
+}
+
+extension Date {
+    
+    static var today: Date {
+        Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: Date())) ?? Date()
+    }
 }

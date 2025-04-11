@@ -4,6 +4,22 @@ extension License {
     
     public struct Address {
         
+        public init(
+            street: String,
+            streetTwo: String?,
+            city: String,
+            state: String,
+            postalCode: String,
+            country: String
+        ) {
+            self.street = street
+            self.streetTwo = streetTwo
+            self.city = city
+            self.state = state
+            self.postalCode = PostalCode(data: postalCode)
+            self.country = country
+        }
+        
         /**
          Address - Street 1
         
@@ -14,7 +30,7 @@ extension License {
          - Field Length: Variable (35 characters max)
          - Character Type: Alpha, Numeric, Special
          */
-        public var street = ""
+        public var street: String
         
         
         /**
@@ -39,7 +55,7 @@ extension License {
          - Field Length: Variable (20 characters max)
          - Character Type: Alpha, Numeric, Special
          */
-        public var city = ""
+        public var city: String
         
         /**
          Address - Jurisdiction Code
@@ -51,7 +67,7 @@ extension License {
          - Field Length: Fixed (2 characters)
          - Character Type: Alpha
          */
-        public var state = ""
+        public var state: String
         
         /**
          Address - Postal Code
@@ -63,7 +79,7 @@ extension License {
          - Field Length: Fixed (11 characters)
          - Character Type: Alpha, Numeric, Special
          */
-        public var zip = ""
+        public var postalCode: PostalCode
         
         /**
          Country Identification
@@ -75,6 +91,6 @@ extension License {
          - Field Length: Fixed (3 characters)
          - Character Type: Alpha
          */
-        public var country = ""
+        public var country: String
     }
 }

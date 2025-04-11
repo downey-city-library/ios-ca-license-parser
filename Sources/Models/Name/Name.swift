@@ -5,13 +5,15 @@ extension License {
     public struct Name {
         
         init(
-            first: Part = Part(),
-            middle: Part = Part(),
-            last: Part = Part()
+            first: FirstName,
+            middle: MiddleName,
+            last: LastName,
+            suffix: Suffix?
         ) {
             self.first = first
             self.middle = middle
             self.last = last
+            self.suffix = suffix
         }
         
         /**
@@ -24,7 +26,7 @@ extension License {
          - Field Length: Variable (40 characters max)
          - Character Type: Alpha, Numeric, Special
          */
-        public var first: Part
+        public var first: FirstName
         
         /**
         Customer Middle Name(s)
@@ -36,7 +38,7 @@ extension License {
          - Field Length: Variable (40 characters max)
          - Character Type: Alpha, Numeric, Special
          */
-        public var middle: Part
+        public var middle: MiddleName
         
         /**
         Customer Family Name
@@ -48,6 +50,8 @@ extension License {
          - Field Length: Variable (40 characters max)
          - Character Type: Alpha, Numeric, Special
          */
-        public var last: Part
+        public var last: LastName
+        
+        public var suffix: Suffix?
     }
 }
