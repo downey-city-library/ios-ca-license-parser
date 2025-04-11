@@ -2,7 +2,10 @@ import Foundation
 
 public extension License {
     
+    /// Physical Description
     struct Description {
+        
+        // MARK: - INITIALIZATION
         
         public init(
             sex: String,
@@ -20,33 +23,24 @@ public extension License {
             self.race = race
         }
         
-        /**
-         Physical Description - Sex
+        // MARK: - PROPERTIES
         
-         # Notes: #
-         - Gender of the cardholder. 1 = male, 2 = female, 9 = not specified.
-         - Element ID: DBC
-         - Card Type: Both (DL, ID)
-         - Field Length: Fixed (1 character)
-         - Character Type: Numeric
-         */
+        /// Physical Description - Sex
         public var sex: Sex
         
-        
-        /**
-         Physical Description - Eye Color
-        
-         # Notes: #
-         - Color of cardholder's eyes. (ANSI D-20 codes)
-         - Element ID: DAY
-         - Card Type: Both (DL, ID)
-         - Field Length: Fixed (3 characters)
-         - Character Type: Alpha
-         */
+        /// Physical Description - Eye Color
         public var eyes: String
+        
+        /// Physical Description - Height
         public var height: Height
+        
+        /// Physical Description - Weight
         public var weight: Weight
+        
+        /// Physical Description - Hair Color
         public var hair: String?
+        
+        /// Race / Ethnicity
         public var race: String?
     }
 }

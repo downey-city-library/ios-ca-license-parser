@@ -2,6 +2,9 @@ import Foundation
 
 extension License {
     
+    // MARK: - PROPERTIES
+    
+    /// Formatted string used for debugging purposes.
     public var debugDescription: String {
         """
         

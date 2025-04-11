@@ -1,6 +1,10 @@
+import Foundation
+
 internal enum LicenseFieldCode: String {
     
-    // Mandatory Data Elements
+    // MARK: - CASES
+    
+    // MARK: Mandatory Data Elements
     
     /// Jurisdiction-Specific Vehicle Class
     case dca = "DCA"
@@ -68,7 +72,7 @@ internal enum LicenseFieldCode: String {
     /// Middle Name Truncation
     case ddg = "DDG"
     
-    // Optional Data Elements
+    // MARK: Optional Data Elements
     
     /// Address - Street 2
     case dah = "DAH"

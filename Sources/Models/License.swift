@@ -10,88 +10,52 @@ public struct License {
     
     // MARK: - MANDATORY DATA ELEMENTS
     
-    /**
-     Jurisdiction-specific vehicle class
-     
-     # Notes: #
-     - Jurisdiction-specific vehicle class / group code, designating the type of vehicle the cardholder has privilege to drive.
-     - Element ID: DCA
-     - Card Type: DL
-     - Field Length: Variable (6 characters max)
-     - Character Type: Alpha, Numeric, Special
-     */
+    /// Jurisdiction-specific vehicle class
     public var `class`: String { raw.dca }
     
-    /**
-     Jurisdiction-specific restriction codes
-     
-     # Notes: #
-     - Jurisdiction-specific codes that represent restrictions to driving privileges (such as airbrakes, automatic transmission, daylight only, etc.).
-     - Element ID: DCB
-     - Card Type: DL
-     - Field Length: Variable (12 characters max)
-     - Character Type: Alpha, Numeric, Special
-     */
+    /// Jurisdiction-specific restriction codes
     public var restrictions: String { raw.dcb }
     
-    /**
-     Jurisdiction-specific endorsement codes
-     
-     # Notes: #
-     - Jurisdiction-specific codes that represent additional privileges granted to the cardholder beyond the vehicle class (such as transportation of passengers, hazardous materials, operation of motorcycles, etc.).
-     - Element ID: DCD
-     - Card Type: DL
-     - Field Length: Variable (5 characters max)
-     - Character Type: Alpha, Numeric, Special
-     */
+    /// Jurisdiction-specific endorsement codes
     public var endorsements: String { raw.dcd }
     
-    /**
-     Document Expiration Date
-     
-     # Notes: #
-     - Date on which the driving and identification privileges granted by the document are no longer valid. (MMDDCCYY for U.S., CCYYMMDD for Canada)
-     - Element ID: DBA
-     - Card Type: Both (DL, ID)
-     - Field Length: Fixed (8 characters)
-     - Character Type: Numeric
-     */
+    /// Document Expiration Date
     public var expiration: Date { raw.dba.asDate ?? Date.today }
+    
+    /// Is the Document Expired?
     public var isExpired: Bool { expiration < Date.today }
     
+    /// Customer Name
     public var name: Name {
         Name(
-            first: .init(value: raw.dac.capitalized, alias: raw.dbg?.capitalized, isTruncated: raw.ddf == "T"),
-            middle: .init(values: raw.dad.components(separatedBy: "").map { $0.capitalized }, isTruncated: raw.ddg == "T"),
-            last: .init(value: raw.dcs.capitalized, alias: raw.dbn?.capitalized, isTruncated: raw.dde == "T"),
-            suffix: .init(value: raw.dcu?.capitalized, alias: raw.dbs?.capitalized)
+            first: .init(
+                value: raw.dac.capitalized,
+                alias: raw.dbg?.capitalized,
+                isTruncated: raw.ddf == "T"
+            ),
+            middle: .init(
+                values: raw.dad.components(separatedBy: "").map { $0.capitalized },
+                isTruncated: raw.ddg == "T"
+            ),
+            last: .init(
+                value: raw.dcs.capitalized,
+                alias: raw.dbn?.capitalized,
+                isTruncated: raw.dde == "T"
+            ),
+            suffix: .init(
+                value: raw.dcu?.capitalized,
+                alias: raw.dbs?.capitalized
+            )
         )
     }
     
-    /**
-     Document Issue Date
-     
-     # Notes: #
-     - Date on which the document was issued. (MMDDCCYY for U.S., CCYYMMDD for Canada)
-     - Element ID: DBD
-     - Card Type: Both (DL, ID)
-     - Field Length: Fixed (8 characters)
-     - Character Type: Numeric
-     */
+    /// Document Issue Date
     public var issued: Date { raw.dbd.asDate ?? Date.today }
     
-    /**
-     Date of Birth
-    
-     # Notes: #
-     - Date on which the cardholder was born. (MMDDCCYY for U.S., CCYYMMDD for Canada)
-     - Element ID: DBB
-     - Card Type: Both (DL, ID)
-     - Field Length: Fixed (8 characters)
-     - Character Type: Numeric
-     */
+    /// Date of Birth
     public var birthdate: Date { raw.dbb.asDate ?? Date.today }
     
+    /// Physical Description
     public var description: Description {
         Description(
             sex: raw.dbc,
@@ -106,53 +70,37 @@ public struct License {
         )
     }
     
+    /// Address
     public var address: Address {
         Address(
             street: raw.dag.capitalized,
             streetTwo: raw.dah?.capitalized,
             city: raw.dai.capitalized,
             state: raw.daj,
-            postalCode: raw.dak, // TODO: Postal Code
-            country: raw.dcg // TODO: Country Code
+            postalCode: raw.dak,
+            country: raw.dcg
         )
     }
     
-    /**
-     Customer ID Number
-    
-     # Notes: #
-     - The number assigned or calculated by the issuing authority.
-     - Element ID: DAQ
-     - Card Type: Both (DL, ID)
-     - Field Length: Variable (25 characters max)
-     - Character Type: Alpha, Numeric, Special
-     */
+    /// Customer ID Number
     public var id: String { raw.daq }
     
-    /**
-     Document Discriminator
-    
-     # Notes: #
-     - Number must uniquely identify a particular document issued to that customer from others that may have been issued in the past. This number may serve multiple purposes of document discrimination, audit information number, and/or inventory control.
-     - Element ID: DCF
-     - Card Type: Both (DL, ID)
-     - Field Length: Variable (25 characters max)
-     - Character Type: Alpha, Numeric, Special
-     */
+    /// Document Discriminator
     public var document: String { raw.dcf }
     
     
     // MARK: - OPTIONAL DATA ELEMENTS
     
+    /// Place of Birth
     public var birthplace: String? { raw.dci }
-    public var audit: String? { raw.dcj }
-    public var controlNumber: String? { raw.dck }
-    public var isCompliant: Bool { raw.dda == "F" }
-    public var revised: Date? { raw.ddb?.asDate }
-    public var hazmat: Date? { raw.ddc?.asDate }
-    public var isOrganDonor: Bool { raw.ddk == "1" }
-    public var isVeteran: Bool { raw.ddl == "1" }
     
+    /// Audit Information
+    public var audit: String? { raw.dcj }
+    
+    /// Inventory Control Number
+    public var controlNumber: String? { raw.dck }
+    
+    /// Standard Vehical Classifications and Codes
     public var standard: Standard {
         Standard(
             vehicle: raw.dcm,
@@ -160,6 +108,7 @@ public struct License {
         )
     }
     
+    /// Jurisdiction-Specific Descriptions
     public var jurisdiction: Standard {
         Standard(
             vehicle: raw.dcp,
@@ -167,6 +116,7 @@ public struct License {
         )
     }
     
+    /// Limited Duration Document Details
     public var provisional: Provisional {
         Provisional(
             isProvisional: raw.ddd == "1",
@@ -176,7 +126,23 @@ public struct License {
         )
     }
     
+    /// DHS Complance
+    public var isCompliant: Bool { raw.dda == "F" }
+    
+    /// Card Revision Date
+    public var revised: Date? { raw.ddb?.asDate }
+    
+    /// HAZMAT Endorsement Expiration Date
+    public var hazmat: Date? { raw.ddc?.asDate }
+    
+    /// Organ Donor Status
+    public var isOrganDonor: Bool { raw.ddk == "1" }
+    
+    /// Veteran Status
+    public var isVeteran: Bool { raw.ddl == "1" }
+    
     // MARK: - RAW VALUES
     
+    /// Raw Representation of DL/ID Data
     public var raw: Raw
 }

@@ -2,7 +2,10 @@ import Foundation
 
 extension License {
     
+    /// Customer Name
     public struct Name {
+        
+        // MARK: - INITIALIZATION
         
         init(
             first: FirstName,
@@ -16,42 +19,18 @@ extension License {
             self.suffix = suffix
         }
         
-        /**
-        Customer First Name
+        // MARK: - PROPERTIES
         
-         # Notes: #
-         - First name of the cardholder.
-         - Element ID: DAC
-         - Card Type: Both (DL, ID)
-         - Field Length: Variable (40 characters max)
-         - Character Type: Alpha, Numeric, Special
-         */
+        /// Customer First Name
         public var first: FirstName
         
-        /**
-        Customer Middle Name(s)
-        
-         # Notes: #
-         - Middle name(s) of the cardholder. In the case of multiple middle names they shall be separated by a comma “,”.
-         - Element ID: DAD
-         - Card Type: Both (DL, ID)
-         - Field Length: Variable (40 characters max)
-         - Character Type: Alpha, Numeric, Special
-         */
+        /// Customer Middle Name(s)
         public var middle: MiddleName
         
-        /**
-        Customer Family Name
-        
-         # Notes: #
-         - Family name of the cardholder. (Family name is sometimes also called “last name” or “surname.”)
-         - Element ID: DCS
-         - Card Type: Both (DL, ID)
-         - Field Length: Variable (40 characters max)
-         - Character Type: Alpha, Numeric, Special
-         */
+        /// Customer Family Name
         public var last: LastName
         
+        /// Customer Name Suffix
         public var suffix: Suffix?
     }
 }
