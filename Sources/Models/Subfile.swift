@@ -9,7 +9,7 @@ public struct Subfile {
         
         self.type = data.at(offset, length: 2)
         self.offset = Int(data.at(offset + 2, length: 4)) ?? offset
-        self.length = Int(data.at(offset + 6, length: 4)) ?? data.count - self.offset
+        self.length = self.offset > 41 ? data.count - self.offset : Int(data.at(offset + 6, length: 4)) ?? 1
         self.value = String(data.at(self.offset, length: self.length).dropFirst(2)).trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
